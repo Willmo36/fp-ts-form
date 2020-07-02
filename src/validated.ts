@@ -25,7 +25,6 @@ export function validated<E, B>(
 
 			return {
 				ui: (onchange) => {
-					// const onchangeValidate =
 					const ui2 = fr.ui((input) => onchange(modified(input)));
 					return pipe(
 						err,
