@@ -3,10 +3,9 @@ import { FunctionN } from "fp-ts/lib/function";
 import { Functor2 } from "fp-ts/lib/Functor";
 import * as O from "fp-ts/lib/Option";
 import { pipe, pipeable } from "fp-ts/lib/pipeable";
+import { Semigroup } from "fp-ts/lib/Semigroup";
 import { Lens } from "monocle-ts";
 import * as React from "react";
-import { Semigroup } from "fp-ts/lib/Semigroup";
-import { Magma } from "fp-ts/lib/Magma";
 import { monoidJSX } from "./jsx";
 
 /**

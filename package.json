@@ -1,7 +1,29 @@
 {
-  "name": "form-ts",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "fp-ts-form",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "es6/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "test": "npm run tslint && npm run prettier && npm run jest",
+    "tslint": "tslint -c tslint.json --project tsconfig.json './src/**/*.ts'",
+    "jest": "jest",
+    "prettier": "prettier --list-different \"./src/**/*.ts\"",
+    "prettier:fix": "prettier --write \"./src/**/*.ts\"",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "author": "Max Willmott <max.willmo@gmail.com>",
+  "description": "Data type and combinators to build forms using fp-ts & React",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Willmo36/form-ts.git"
+  },
+  "tags": [
+    "typescript",
+    "fp-ts",
+    "functional-programming"
+  ],
   "license": "MIT",
   "dependencies": {
     "@types/react": "^16.9.34",
@@ -11,8 +33,12 @@
     "monocle-ts": "^2.1.0",
     "newtype-ts": "^0.3.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
     "ts-node": "^8.9.1",
+    "tslint": "^6.1.2",
     "typescript": "^3.8.3"
   }
 }
