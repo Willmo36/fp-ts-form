@@ -6,12 +6,10 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
-    "test": "npm run tslint && npm run prettier && npm run jest",
     "tslint": "tslint -c tslint.json --project tsconfig.json './src/**/*.ts{,x}'",
-    "jest": "jest",
     "prettier": "prettier --list-different \"./src/**/*.ts{,x}\"",
     "prettier:fix": "prettier --write \"./src/**/*.ts{,x}\"",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepublishOnly": "npm run build"
   },
   "author": "Max Willmott <max.willmo@gmail.com>",
   "description": "Data type and combinators to build forms using fp-ts & React",
