@@ -1,9 +1,11 @@
 {
   "name": "fp-ts-form",
-  "version": "0.0.1-alpha",
-  "main": "dist/index.js",
-  "module": "es6/index.js",
-  "typings": "dist/index.d.ts",
+  "version": "0.0.1-alpha.2",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "tslint": "tslint -c tslint.json --project tsconfig.json './src/**/*.ts{,x}'",
@@ -18,6 +20,11 @@
     "url": "https://github.com/Willmo36/form-ts.git"
   },
   "tags": [
+    "typescript",
+    "fp-ts",
+    "functional-programming"
+  ],
+  "keywords": [
     "typescript",
     "fp-ts",
     "functional-programming"
