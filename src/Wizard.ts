@@ -5,8 +5,8 @@ import * as O from 'fp-ts/lib/Option';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { iso, Newtype } from 'newtype-ts';
 import { ExtractHKTArgs2 } from './HKT';
-import * as F from './index';
-import { monoidJSX } from './jsx';
+import * as F from './Form';
+import { monoidJSX } from './JSX';
 
 export interface Wizard<E, A> extends Newtype<{ readonly Wizard: unique symbol }, F.Form<E, A>> {}
 

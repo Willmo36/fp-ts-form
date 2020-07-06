@@ -1,4 +1,4 @@
-import * as F from './';
+import * as F from './Form';
 import { FunctionN } from 'fp-ts/lib/function';
 import { pipe } from 'fp-ts/lib/pipeable';
 import * as O from 'fp-ts/lib/Option';
