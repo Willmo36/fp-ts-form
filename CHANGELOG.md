@@ -13,12 +13,5 @@
 **Note**: Gaps between patch versions are faulty/broken releases.
 **Note**: A feature tagged as Experimental is in a high state of flux, you're at risk of it changing without notice.
 
-# 0.0.1-alpha.2
-- Internal
-    - Remove `src` published content
-    - Export `lib` dir in pattern with other `fp-ts` libs
-
-
-# 0.0.1-alpha
-
-Test release
+# 0.0.1
+Publish PoC code as package
