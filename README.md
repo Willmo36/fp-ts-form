@@ -1,4 +1,9 @@
-# `fp-ts` port of Lumi's FormBuilder DSL
+# fp-ts-form v0.0.2
+`fp-ts` port of Lumi's FormBuilder DSL
+
+### Installation
+`yarn add fp-ts-form`
+
 
 ### Source material
 https://medium.com/fuzzy-sharp/building-a-type-safe-embedded-dsl-for-form-components-with-validation-e7ffaaf537e4

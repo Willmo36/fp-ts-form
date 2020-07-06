@@ -1,8 +1,9 @@
 {
   "name": "fp-ts-form",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "sideEffects": false,
   "files": [
     "lib"
   ],
@@ -31,7 +32,7 @@
     "functional-programming"
   ],
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "fp-ts": "^2.5.4",
     "monocle-ts": "^2.1.0",
     "newtype-ts": "^0.3.4"
