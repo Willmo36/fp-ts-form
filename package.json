@@ -8,6 +8,7 @@
     "lib"
   ],
   "scripts": {
+    "prepare": "install-self-peers -- --ignore-scripts",
     "clean": "rimraf lib",
     "build": "yarn clean && tsc -p ./tsconfig.build.json",
     "tslint": "tslint -c tslint.json --project tsconfig.json './src/**/*.ts{,x}'",
@@ -33,22 +34,23 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "fp-ts": "^2.5.4",
+    "fp-ts": "^2.1.2",
     "monocle-ts": "^2.1.0",
     "newtype-ts": "^0.3.4"
   },
   "devDependencies": {
+    "@team-griffin/install-self-peers": "^1.1.1",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
-    "fp-ts-contrib": "^0.1.15",
+    "fp-ts-contrib": "^0.1.18",
     "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "rimraf": "^3.0.2",
     "ts-node": "^8.9.1",
     "tslint": "^6.1.2",
     "tslint-config-standard": "^9.0.0",
     "tslint-immutable": "^6.0.1",
-    "typescript": "^3.8.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "typescript": "^3.8.3"
   }
 }
