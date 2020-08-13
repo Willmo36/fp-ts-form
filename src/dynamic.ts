@@ -11,29 +11,29 @@ export const multiform = <K, A, B>(
 	semigroupB: Semigroup<B>,
 	abForm: F.Form<A, B>
 ): F.Form<Map<K, A>, Map<K, B>> => {
-	const monoidKBMap = M.getMonoid(ordK, semigroupB);
-	const monoidABMapForm = F.getMonoid<Map<K, A>, Map<K, B>>(monoidKBMap);
+	const monoidMapB = M.getMonoid(ordK, semigroupB);
+	const monoidABMapForm = F.getMonoid<Map<K, A>, Map<K, B>>(monoidMapB);
 
-	return (kaMap) => {
-		const aMapBMapForm = pipe(
-			kaMap,
+	return (ma) => {
+		const ma_mb_form = pipe(
+			ma,
 			M.toArray(ordK),
 			A.map(([key, aValue]) => {
 				// Run the abForm with A to obtain B
 				// Create a new Form which takes Map<K,A>
 				// and has a prebuilt response of Map<K,B>
 
-				const abFormResult = abForm(aValue);
+				const ab_form_result = abForm(aValue);
 
-				const ma_mb_form: F.Form<Map<K, A>, Map<K, B>> = (kaMap_) => ({
+				const ma_mb_form: F.Form<Map<K, A>, Map<K, B>> = (ma_next) => ({
 					result: pipe(
-						abFormResult.result,
+						ab_form_result.result,
                         O.map((b) => new Map([[key, b]])),
                         O.alt(() => O.some(new Map()))
 					),
 					ui: (onchange) =>
-						abFormResult.ui((nextAValue) => {
-                            const next = M.insertAt(ordK)(key, nextAValue)(kaMap_);
+						ab_form_result.ui((nextAValue) => {
+                            const next = M.insertAt(ordK)(key, nextAValue)(ma_next);
 							onchange(next);
 						})
 				});
@@ -43,6 +43,6 @@ export const multiform = <K, A, B>(
 			(forms) => forms.reduce(monoidABMapForm.concat, monoidABMapForm.empty)
 		);
 
-		return aMapBMapForm(kaMap);
+		return ma_mb_form(ma);
 	};
 };
