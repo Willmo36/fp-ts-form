@@ -28,11 +28,12 @@ export const multiform = <K, A, B>(
 				const ma_mb_form: F.Form<Map<K, A>, Map<K, B>> = (kaMap_) => ({
 					result: pipe(
 						abFormResult.result,
-						O.map((b) => new Map([[key, b]]))
+                        O.map((b) => new Map([[key, b]])),
+                        O.alt(() => O.some(new Map()))
 					),
 					ui: (onchange) =>
 						abFormResult.ui((nextAValue) => {
-							const next = M.insertAt(ordK)(key, nextAValue)(kaMap_);
+                            const next = M.insertAt(ordK)(key, nextAValue)(kaMap_);
 							onchange(next);
 						})
 				});

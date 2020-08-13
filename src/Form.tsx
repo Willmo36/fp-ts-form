@@ -82,7 +82,7 @@ export function getMonoid<E,A>(monoidA: Monoid<A>): Monoid<Form<E,A>> {
 		result: O.some(monoidA.empty),
 		ui: () => monoidJSX.empty
 	  })
-	}
+	};
   }
 
 const { map, ap, apFirst, apSecond } = pipeable(form);

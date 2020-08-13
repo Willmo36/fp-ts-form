@@ -88,6 +88,7 @@ const App = () => {
 			{formResult.ui(setFormData)}
 			<button onClick={addPlayer}>Add Player</button>
 			<p>{JSON.stringify(formResult.result)}</p>
+			<p>Map contents isn't show with stringify</p>
 		</div>
 	);
 };
