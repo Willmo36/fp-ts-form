@@ -1,5 +1,6 @@
 import * as A from 'fp-ts/lib/Array';
 import * as M from 'fp-ts/lib/Map';
+import * as O from 'fp-ts/lib/Option';
 import { Ord } from 'fp-ts/lib/Ord';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { Semigroup } from 'fp-ts/lib/Semigroup';
@@ -11,30 +12,32 @@ export const multiform = <K, A, B>(
 	abForm: F.Form<A, B>
 ): F.Form<Map<K, A>, Map<K, B>> => {
 	const monoidKBMap = M.getMonoid(ordK, semigroupB);
-    const monoidABMapForm = F.getMonoid<Map<K, A>, Map<K, B>>(monoidKBMap);
+	const monoidABMapForm = F.getMonoid<Map<K, A>, Map<K, B>>(monoidKBMap);
 
 	return (kaMap) => {
 		const aMapBMapForm = pipe(
 			kaMap,
 			M.toArray(ordK),
 			A.map(([key, aValue]) => {
-				const abMapForm = pipe(
-					abForm,
-					F.map((bValue) => new Map([[key, bValue]]))
-				);
+				// Run the abForm with A to obtain B
+				// Create a new Form which takes Map<K,A>
+				// and has a prebuilt response of Map<K,B>
 
-				const formResult = abMapForm(aValue);
+				const abFormResult = abForm(aValue);
 
-				const indexedForm: F.Form<Map<K, A>, Map<K, B>> = (i2) => ({
-					result: formResult.result,
+				const ma_mb_form: F.Form<Map<K, A>, Map<K, B>> = (kaMap_) => ({
+					result: pipe(
+						abFormResult.result,
+						O.map((b) => new Map([[key, b]]))
+					),
 					ui: (onchange) =>
-						formResult.ui((nextBValue) => {
-							const next = M.insertAt(ordK)(key, nextBValue)(i2);
+						abFormResult.ui((nextAValue) => {
+							const next = M.insertAt(ordK)(key, nextAValue)(kaMap_);
 							onchange(next);
 						})
 				});
 
-				return indexedForm;
+				return ma_mb_form;
 			}),
 			(forms) => forms.reduce(monoidABMapForm.concat, monoidABMapForm.empty)
 		);

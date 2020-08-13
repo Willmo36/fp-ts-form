@@ -11,7 +11,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as F from '../../src/Form';
 import * as V from '../../src/Validated';
-import { multiform } from "../../src/dynamic";
+import { multiform } from '../../src/dynamic';
 
 type Team = { teamName: string; players: Map<number, string> };
 type TeamFormData = {
@@ -51,10 +51,6 @@ const teamNameForm: F.Form<TeamFormData, string> = pipe(
 	F.mapUI((ui) => <div>{ui}</div>) // maintain focus
 );
 
-const monoidPlayersForm = F.getMonoid<PlayersFormData, Map<number, string>>(
-	M.getMonoid(eqNumber, { concat: (_a, b) => b }) // semigroup which takes the latest
-);
-
 const playerForm = pipe(
 	textbox,
 	V.validated(nonEmpty, renderErr),
@@ -65,7 +61,12 @@ const playerForm = pipe(
 	))
 );
 
-const playerMapForm: F.Form<PlayersFormData, Map<number, string>> = multiform(ordNumber, { concat: (_a, b) => b }, playerForm);
+const semigroupPlayerMap = { concat: (_a, b) => b };
+const playerMapForm: F.Form<PlayersFormData, Map<number, string>> = multiform(
+	ordNumber,
+	semigroupPlayerMap,
+	playerForm
+);
 
 const teamForm: F.Form<TeamFormData, Team> = sequenceS(F.form)({
 	teamName: teamNameForm,
