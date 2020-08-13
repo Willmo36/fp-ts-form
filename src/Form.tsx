@@ -4,6 +4,7 @@ import { Functor2 } from 'fp-ts/lib/Functor';
 import * as O from 'fp-ts/lib/Option';
 import { pipe, pipeable } from 'fp-ts/lib/pipeable';
 import { Semigroup } from 'fp-ts/lib/Semigroup';
+import { Monoid } from 'fp-ts/lib/Monoid';
 import { Lens } from 'monocle-ts';
 import * as React from 'react';
 import { monoidJSX } from './jsx';
@@ -73,6 +74,16 @@ export function getSemigroup<E, A>(semigroupA: Semigroup<A>): Semigroup<Form<E, 
 		}
 	};
 }
+
+export function getMonoid<E,A>(monoidA: Monoid<A>): Monoid<Form<E,A>> {
+	return {
+	  ...getSemigroup(monoidA),
+	  empty: i => ({
+		result: O.some(monoidA.empty),
+		ui: () => monoidJSX.empty
+	  })
+	};
+  }
 
 const { map, ap, apFirst, apSecond } = pipeable(form);
 export { map, ap, apFirst, apSecond };
