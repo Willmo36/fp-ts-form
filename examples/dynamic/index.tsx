@@ -11,6 +11,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as F from '../../src/Form';
 import * as V from '../../src/Validated';
+import { multiform } from "../../src/dynamic";
 
 type Team = { teamName: string; players: Map<number, string> };
 type TeamFormData = {
@@ -54,43 +55,21 @@ const monoidPlayersForm = F.getMonoid<PlayersFormData, Map<number, string>>(
 	M.getMonoid(eqNumber, { concat: (_a, b) => b }) // semigroup which takes the latest
 );
 
-const playersForm_: F.Form<PlayersFormData, Map<number, string>> = (playersFormData) =>
-	pipe(
-		playersFormData,
-		M.toArray(ordNumber),
-		A.map(([id, playerName]) => {
-			const playerForm = pipe(
-				textbox,
-				V.validated(nonEmpty, renderErr),
-				F.mapUI((form) => (
-					<div>
-						<span>Player {id}</span>
-						<div>{form}</div>
-					</div>
-				)),
-				F.map((nextName) => new Map([[id, nextName]])) // return a single entry Map which we'll later combine back into the larger map with semigroup
-			);
+const playerForm = pipe(
+	textbox,
+	V.validated(nonEmpty, renderErr),
+	F.mapUI((form) => (
+		<div>
+			<div>{form}</div>
+		</div>
+	))
+);
 
-			const playerFormResult = playerForm(playerName);
-
-			const indexedForm: F.Form<PlayersFormData, Map<number, string>> = (i2) => ({
-				result: playerFormResult.result,
-				ui: (onchange) =>
-					playerFormResult.ui((nextName) => {
-						const next = M.insertAt(eqNumber)(id, nextName)(i2);
-						onchange(next);
-					})
-			});
-
-			return indexedForm;
-		}),
-		(forms) => forms.reduce(monoidPlayersForm.concat, monoidPlayersForm.empty),
-		(form) => form(playersFormData)
-	);
+const playerMapForm: F.Form<PlayersFormData, Map<number, string>> = multiform(ordNumber, { concat: (_a, b) => b }, playerForm);
 
 const teamForm: F.Form<TeamFormData, Team> = sequenceS(F.form)({
 	teamName: teamNameForm,
-	players: pipe(playersForm_, F.focus(_players))
+	players: pipe(playerMapForm, F.focus(_players))
 });
 
 const App = () => {
