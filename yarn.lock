@@ -172,11 +172,6 @@ fp-ts-contrib@^0.1.18:
   resolved "https://registry.yarnpkg.com/fp-ts-contrib/-/fp-ts-contrib-0.1.18.tgz#5134322ece1bb57c8435a18da3127330a5c79add"
   integrity sha512-1JV2eLM30DI5Ptic88i7Kv9Y2RRCoZx1VCGrDHNoN/fAx4CJm4V0iF+p6aGtXxQjRZCJnlGH70gLcd+iStHuYA==
 
-fp-ts@^2.1.2:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.8.1.tgz#b1812171469a7c0fcbc0b770ac2568f8356d1993"
-  integrity sha512-HuA/6roEliHoBgEOLCKmGRcM90e2trW/ITZZ9d9P/ra7PreqQagC3Jg6OzqWkai13KUbG90b8QO9rHPBGK/ckw==
-
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -263,9 +258,9 @@ minimatch@^3.0.4:
     brace-expansion "^1.1.7"
 
 minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
 mkdirp@^0.5.3:
   version "0.5.5"
@@ -273,16 +268,6 @@ mkdirp@^0.5.3:
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
   dependencies:
     minimist "^1.2.5"
-
-monocle-ts@^2.1.0:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/monocle-ts/-/monocle-ts-2.3.3.tgz#1e6d83dcf42bcb96b74fdda07813c2a47ec6cfa4"
-  integrity sha512-pcQyauWO2vapxyZgbhTd73Dv8TmTELx1rL81bvrtPO2sUYTi1MIHmw3j/iMyeNaJwTmnGNAjqJpYV8Gq1Eu68g==
-
-newtype-ts@^0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/newtype-ts/-/newtype-ts-0.3.4.tgz#65c74b7d5195edaa9abfcdba6549a33a5c0e298d"
-  integrity sha512-lFJnWAt0oXX1j1ErNy9RU5+FPNtVyzugHW2MchaaMiOeeS9LEmqAAOqyHPFQ0Uw895jStSYGSCslrByzYxFJYQ==
 
 object-assign@^4.1.1:
   version "4.1.1"
